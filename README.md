@@ -1,16 +1,37 @@
-# merchant_app
+# Merchant Product App (Offline-First)
 
-A new Flutter project.
+A production-ready Flutter application demonstrating Clean Architecture, Offline Capability, and Data Synchronization.
+Built as a technical assignment for the Senior Mobile Engineer position.
 
-## Getting Started
+## Features
+- **Clean Architecture:** Separated into Presentation, Domain, and Data layers.
+- **Offline-First:** Create and view products without internet connection.
+- **Auto Synchronization:** Automatically syncs pending data when connection is restored.
+- **State Management:** Flutter Bloc (Cubit) for predictable state transitions.
+- **Local Persistence:** Hive (NoSQL) for fast local data storage.
+- **Dependency Injection:** GetIt + Injectable.
 
-This project is a starting point for a Flutter application.
+## Tech Stack
+- **Framework:** Flutter 3.x
+- **Language:** Dart
+- **Network:** Dio
+- **Local DB:** Hive
+- **State Management:** Flutter Bloc
+- **Service Locator:** GetIt
+- **Code Generation:** Freezed / JsonSerializable / HiveGenerator
 
-A few resources to get you started if this is your first Flutter project:
+## How to Run
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. **Prerequisites**
+   Ensure you have Flutter installed and Node.js (for the mock backend).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. **Setup Backend**
+   This app requires a local JSON server.
+   ```bash
+   # Install dependencies
+   npm install -g json-server
+   
+   # Run the server (Make sure to use host 0.0.0.0 for Android Emulator access)
+   npx json-server --watch mock_backend/db.json --port 3000 --host 0.0.0.0
+
+   

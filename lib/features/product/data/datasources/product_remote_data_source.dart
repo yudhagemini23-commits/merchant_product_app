@@ -11,7 +11,9 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   final Dio dio;
 
   ProductRemoteDataSourceImpl({required this.dio});
-  // final String baseUrl = "http://localhost:3000";
+  
+  // IP configuration for local network testing (Mac IP: 192.168.100.3)
+  // Note: Use http://10.0.2.2:3000/ if testing on a standard Android Emulator
   final String baseUrl = "http://192.168.100.3:3000/";
 
   @override
@@ -20,6 +22,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
       '$baseUrl/products',
       queryParameters: {'_page': page, '_limit': 20},
     );
+    // Map raw dynamic list to ProductModel instances
     return (response.data as List)
         .map((json) => ProductModel.fromJson(json))
         .toList();

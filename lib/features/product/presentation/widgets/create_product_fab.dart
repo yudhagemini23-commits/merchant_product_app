@@ -11,7 +11,7 @@ class CreateProductFab extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        // Logika dummy data dipindah ke sini
+        // Generate a temporary product entity with a unique UUID for offline-first handling
         final newProduct = Product(
           id: const Uuid().v4(),
           name: "New Item ${DateTime.now().second}",
@@ -19,9 +19,10 @@ class CreateProductFab extends StatelessWidget {
           description: "Created at ${DateTime.now()}",
           status: "active",
           updatedAt: DateTime.now(),
-          isSynced: true, // Nanti di repo akan diubah jadi false jika offline
+          isSynced: true, // Repository logic will override this if the device is offline
         );
-        // Menggunakan context.read (Best Practice untuk Event)
+
+        // Trigger business logic via Cubit; context.read is used to avoid unnecessary rebuilds
         context.read<ProductCubit>().addNewProduct(newProduct);
       },
       child: const Icon(Icons.add),
